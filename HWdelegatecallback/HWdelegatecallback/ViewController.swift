@@ -12,10 +12,22 @@ import UIKit
 //}
 
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextFieldDelegate {
+    func recieveString(text: String) {
+        labelForAllText.text = message
+    }
+    
+//    func textFieldDidEndEditing(_ textField: UITextField) {
+//       // self..text = labelForAllText.text
+//    }
+    
+//    func recieveString(text: String) {
+//        self.labelForAllText.text = text
+//    }
     
     
-
+    
+    var message: String = ""
     @IBOutlet weak var nextScreenButton: UIButton!
  //   weak var delegate: StringDelegate?
     @IBOutlet weak var labelForAllText: UILabel!
@@ -23,11 +35,15 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        let second = SecondViewController()
+//        second.delegate = self
+//        
+//        second.sendString()
+    //    recieveString(text: message)
         let second = SecondViewController()
         second.delegate = self
-        
         second.sendString()
-        
+
     }
     
     @IBAction func nextButton(_ sender: Any) {
@@ -47,16 +63,34 @@ class ViewController: UIViewController {
 
 }
 
-extension ViewController: StringDelegate {
-    
+//extension ViewController: StringDelegate {
+//
+//    func recieveString(text: String) {
+//        self.labelForAllText.text = text
+//        print("Get message: \(text)")
+//    }
+//    
+//}
+
+extension UILabel: UITextFieldDelegate {
     func recieveString(text: String) {
-        self.labelForAllText.text = text
-        print("Get message: \(text)")
     }
     
+//    func textFieldDidEndEditing(_ textField: UITextField) {
+//    }
+////    
+//    func recieveString(text: String) {
+//        //  labelForAllText = text
+//    }
 }
 
 
+
+//подключи к классу UITextFieldDelegate
+//после воспользуйся функцией
+//func textFieldDidEndEditing(_ textField: UITextField) {
+//texfiled.text = label.text
+//}
 //Создать два экрана.
 //На первом экране UILabel и кнопка
 //По нажатию на кнопку, происходит переход на второй экран.

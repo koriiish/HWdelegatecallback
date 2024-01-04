@@ -7,14 +7,32 @@
 
 import UIKit
 
-protocol StringDelegate: AnyObject {
+
+//подключи к классу UITextFieldDelegate
+//после воспользуйся функцией
+//func textFieldDidEndEditing(_ textField: UITextField) {
+//texfiled.text = label.text
+//}
+//
+//protocol UITextFieldDelegate: AnyObject {
+//    func textFieldDidEndEditing(_ textField: UITextField)
+//}
+// последний вариант юыл этот
+protocol UITextFieldDelegate: AnyObject {
     func recieveString(text: String)
 }
+//protocol StringDelegate: AnyObject {
+//    func recieveString(text: String)
+//}
 
-class SecondViewController: UIViewController {
+class SecondViewController: UIViewController, UITextFieldDelegate {
+    func recieveString(text: String) {
+    }
+    
   //  var labelForAllText: UILabel!
+ //   var message: String = ""
     var recieveText: String = ""
-    weak var delegate: StringDelegate?
+    weak var delegate: UITextFieldDelegate?
     @IBOutlet weak var firstTextField: UITextField!
     
     @IBOutlet weak var secondTextField: UITextField!
@@ -22,13 +40,16 @@ class SecondViewController: UIViewController {
     @IBOutlet weak var saveTextButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+       // recieveString(text: message)
     
     }
 
     @IBAction func saveTextFieldButton(_ sender: Any) {
         recieveText = "\(firstTextField.text ?? "first text field is empty") + \(secondTextField.text ?? "second text field is empty") + \(thirdTextField.text ?? "third text field is empty")"
-        
+//        delegate?.receiveLabelText(labelMessage: message)
+//        let second = SecondViewController()
+//        let first = ViewController()
+//        first.labelForAllText.text = message
         let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let vC: UIViewController = mainStoryboard.instantiateViewController(withIdentifier: "ViewController") as! ViewController
         vC.modalPresentationStyle = .fullScreen
@@ -46,12 +67,19 @@ class SecondViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
+//    func sendString() { // вне вью дид лоуда
+//       // let message = recieveText
+//        delegate?.recieveString(text: recieveText)
+//    }
     func sendString() { // вне вью дид лоуда
-       // let message = recieveText
-        delegate?.recieveString(text: recieveText)
+     let message = recieveText
+//        recieveText = "\(firstTextField.text ?? "first text field is empty") + \(secondTextField.text ?? "second text field is empty") + \(thirdTextField.text ?? "third text field is empty")"
+        
+        //это последний вариант
+            delegate?.recieveString(text: message)
+        }
+        
+        //это краш
+     //   delegate?.textFieldDidEndEditing(firstTextField!)
     }
-
-
-
-    
-}
+                    
