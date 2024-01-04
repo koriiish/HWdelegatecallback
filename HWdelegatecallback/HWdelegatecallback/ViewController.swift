@@ -14,7 +14,7 @@ import UIKit
 
 class ViewController: UIViewController, UITextFieldDelegate {
     func recieveString(text: String) {
-        labelForAllText.text = message
+        labelForAllText.text = text
     }
     
 //    func textFieldDidEndEditing(_ textField: UITextField) {
@@ -27,7 +27,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     
     
-    var message: String = ""
+  //  var message: String = ""
     @IBOutlet weak var nextScreenButton: UIButton!
  //   weak var delegate: StringDelegate?
     @IBOutlet weak var labelForAllText: UILabel!
@@ -40,6 +40,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
 //        
 //        second.sendString()
     //    recieveString(text: message)
+        
+//        
         let second = SecondViewController()
         second.delegate = self
         second.sendString()
@@ -74,8 +76,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
 
 extension UILabel: UITextFieldDelegate {
     func recieveString(text: String) {
+     //  self.labelForAllText.text = text
     }
-    
+//    func textFieldDidEndEditing(_ textField: UITextField) {
+//       // textField.text = 
+//    }
 //    func textFieldDidEndEditing(_ textField: UITextField) {
 //    }
 ////    
