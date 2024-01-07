@@ -7,27 +7,9 @@
 
 import UIKit
 
-//protocol StringDelegate: AnyObject {
-//    func recieveString(text: String)
-//}
 
-
-class ViewController: UIViewController, UITextFieldDelegate {
-    func recieveString(text: String) {
-        labelForAllText.text = text
-    }
-    
-//    func textFieldDidEndEditing(_ textField: UITextField) {
-//       // self..text = labelForAllText.text
-//    }
-    
-//    func recieveString(text: String) {
-//        self.labelForAllText.text = text
-//    }
-    
-    
-    
-  //  var message: String = ""
+class ViewController: UIViewController {
+   
     @IBOutlet weak var nextScreenButton: UIButton!
  //   weak var delegate: StringDelegate?
     @IBOutlet weak var labelForAllText: UILabel!
@@ -35,25 +17,15 @@ class ViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        let second = SecondViewController()
-//        second.delegate = self
-//        
-//        second.sendString()
-    //    recieveString(text: message)
-        
-//        
-        let second = SecondViewController()
-        second.delegate = self
-        second.sendString()
 
     }
     
     @IBAction func nextButton(_ sender: Any) {
         
         let storyboard = UIStoryboard(name: "Second", bundle: nil)
-        let secondVC: UIViewController = storyboard.instantiateViewController(withIdentifier: "SecondViewController") as! SecondViewController
+        let secondVC = storyboard.instantiateViewController(withIdentifier: "SecondViewController") as! SecondViewController
         secondVC.modalPresentationStyle = .fullScreen
-        
+        secondVC.delegate = self
         if let navigationController = navigationController {
             navigationController.pushViewController(secondVC, animated: true)
         } else {
@@ -65,28 +37,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
 
 }
 
-//extension ViewController: StringDelegate {
-//
-//    func recieveString(text: String) {
-//        self.labelForAllText.text = text
-//        print("Get message: \(text)")
-//    }
-//    
-//}
+extension ViewController: SendMessageDelegate {
 
-extension UILabel: UITextFieldDelegate {
     func recieveString(text: String) {
-     //  self.labelForAllText.text = text
+        self.labelForAllText.text = text
+        print("Get message: \(text)")
     }
-//    func textFieldDidEndEditing(_ textField: UITextField) {
-//       // textField.text = 
-//    }
-//    func textFieldDidEndEditing(_ textField: UITextField) {
-//    }
-////    
-//    func recieveString(text: String) {
-//        //  labelForAllText = text
-//    }
+    
 }
 
 
